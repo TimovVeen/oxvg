@@ -121,3 +121,8 @@ jobs:
           files: artifacts/**/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create crate tarball
+        if: steps.release_check.outputs.should_release == 'true'
+        uses: projg2/crate-dist-action@v1
+        with:
+          directories: "./crates/oxvg"
